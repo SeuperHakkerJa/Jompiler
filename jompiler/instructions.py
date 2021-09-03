@@ -1,22 +1,28 @@
 import numpy as np
 import sapien.core as sapien
+from articulation_wrapper import SapArticulation
+class MyObject:
+    def __init__(self, name):
+        self.name = name
+
+
 
 class Instruction():
     def __init__(self, instruction_str):
-        self.instruction_str=instruction_str
+        self.instruction_str = instruction_str
 
-    def execute(self):
+    def execute(self, **kwargs):
         raise NotImplementedError
 
-    def get_reward(self):
+    def get_reward(self, **kwargs):
         raise NotImplementedError
 
     @classmethod
-    def parse(cls, text:str):
-        raise NotImplementedError
+    def parse(cls, text:str) :
+        pass
 
     def __str__(self):
-        raise NotImplementedError
+        return self.instruction_str
 
 
 
@@ -31,7 +37,7 @@ class Relational():
     def __str__(self):
         raise NotImplementedError
 
-class MOVETO(Instruction):
+class MoveTo(Instruction):
     def __init__(self, pose:sapien.Pose, grasp=False):
         super().__init__("move to pose p:{}  q:{}".format(pose.p, pose.q))
         self.pose = pose
@@ -44,12 +50,8 @@ class MOVETO(Instruction):
 
 class IsAbove(Relational):
     def __init__(self):
+        super().__init__("Top")
         pass
     def check(self, full_state):
         pass
-
-class 
-
-
-
 
