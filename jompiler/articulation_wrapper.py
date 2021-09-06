@@ -1,7 +1,7 @@
 import sapien.core as sapien
 
 
-class SapArticulation(sapien.Articulation):
+class SapArticulation():
     def __init__(self, name, articulation, **kwargs):
         self.name = name
-        self.articulation = articulation
+        self.articulation:sapien.Articulation = articulation
